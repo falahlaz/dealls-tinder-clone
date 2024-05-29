@@ -11,4 +11,5 @@ func Init(f *factory.Factory) {
 	}
 
 	PremiumpackageSeeder(f.PremiumPackageRepository)
+	UserSeeder(f.UserRepository)
 }

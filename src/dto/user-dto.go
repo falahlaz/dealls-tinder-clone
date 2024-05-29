@@ -12,3 +12,8 @@ type UserResponseDto struct {
 	IsVerified              bool      `json:"is_verified"`
 	CreatedAt               time.Time `json:"created_at"`
 }
+
+type UserFilterDto struct {
+	Age            int
+	MatchedUserIDs []string
+}

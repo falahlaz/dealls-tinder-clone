@@ -6,6 +6,7 @@ import (
 	"os"
 	"tinder-clone/src/app/auth"
 	"tinder-clone/src/app/order"
+	"tinder-clone/src/app/swipe"
 	"tinder-clone/src/factory"
 	"tinder-clone/src/middleware"
 
@@ -24,4 +25,5 @@ func Init(e *echo.Echo, f *factory.Factory) {
 
 	auth.NewHandler(f).Route(v1.Group("/auth"))
 	order.NewHandler(f).Route(v1.Group("/orders", authMiddleware))
+	swipe.NewHandler(f).Route(v1.Group("/swipes", authMiddleware))
 }
