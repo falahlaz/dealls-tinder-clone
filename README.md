@@ -34,6 +34,13 @@ Install dependencies
   go mod tidy
 ```
 
+If you want to run migration and seeder, you can change `DB_SEEDER` and `DB_MIGRATE` to `true` on the `.env` file. And don't forget to turn back to `false`.
+
+```bash
+  DB_SEEDER=true
+  DB_MIGRATE=true
+```
+
 Start the server
 
 ```bash
@@ -43,4 +50,3 @@ Start the server
 ## Authors
 
 - [@falahlaz](https://www.github.com/falahlaz)
-
