@@ -5,7 +5,8 @@ type RegisterRequestDto struct {
 	Email           string `json:"email" validate:"required,email"`
 	Password        string `json:"password" validate:"required"`
 	ConfirmPassword string `json:"confirm_password" validate:"required,eqfield=Password"`
-	Age             int    `json:"age" validate:"gte=18,lte=100"`
+	Age             int    `json:"age" validate:"gte=18,lte=50"`
+	Gender          string `json:"gender" validate:"required,oneof=Male Female"`
 }
 
 type LoginRequestDto struct {

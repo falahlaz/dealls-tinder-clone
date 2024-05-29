@@ -55,7 +55,12 @@ func (s *SwipeService) FindPotentialMatches(c *abstraction.Context, payload *dto
 			return nil, response.ErrorWrap(response.CustomError(http.StatusInternalServerError, err.Error()), err)
 		}
 
-		potentialUsers, err := s.UserRepository.Find(c, &dto.UserFilterDto{Age: user.Age, MatchedUserIDs: matchedUserIDs})
+		gender := "Male"
+		if user.Gender == "Male" {
+			gender = "Female"
+		}
+
+		potentialUsers, err := s.UserRepository.Find(c, &dto.UserFilterDto{Age: user.Age, MatchedUserIDs: matchedUserIDs, Gender: gender})
 		if err != nil {
 			return nil, response.ErrorWrap(response.CustomError(http.StatusInternalServerError, err.Error()), err)
 		}
@@ -80,7 +85,6 @@ func (s *SwipeService) FindPotentialMatches(c *abstraction.Context, payload *dto
 	radius := 100
 	potentialMatches := []string{}
 	for i := 0; i < 5; i++ {
-		fmt.Println("loop", i)
 		potentialMatches = s.RedisClient.GeoSearch(c, potentialMatchKey, &redis.GeoSearchQuery{
 			Longitude:  payload.Longitude,
 			Latitude:   payload.Latitude,
@@ -96,7 +100,6 @@ func (s *SwipeService) FindPotentialMatches(c *abstraction.Context, payload *dto
 		radius += 200
 	}
 
-	fmt.Println(potentialMatches)
 	if len(potentialMatches) == 0 {
 		return nil, response.ErrorWrap(response.CustomError(http.StatusNotFound, "no potential matches found"), err)
 	}

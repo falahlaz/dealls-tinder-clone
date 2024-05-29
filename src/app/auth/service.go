@@ -80,6 +80,7 @@ func (a *AuthService) Register(c *abstraction.Context, payload *dto.RegisterRequ
 		Email:    payload.Email,
 		Password: payload.Password,
 		Age:      payload.Age,
+		Gender:   payload.Gender,
 	}
 
 	if err := user.HashPassword(); err != nil {

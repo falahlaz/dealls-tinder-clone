@@ -33,6 +33,7 @@ func UserSeeder(userRepository *repositories.UserRepository) {
 				Email:    personFaker.Contact().Email,
 				Password: personFaker.Faker.Internet().Password(),
 				Age:      fakerInstance.IntBetween(18, 60),
+				Gender:   personFaker.Gender(),
 			}
 			userModel.HashPassword()
 

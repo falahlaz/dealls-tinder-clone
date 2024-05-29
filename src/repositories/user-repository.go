@@ -40,7 +40,12 @@ func (u *UserRepository) FindByID(c *abstraction.Context, ID string) (*models.Us
 
 func (u *UserRepository) Find(c *abstraction.Context, filter *dto.UserFilterDto) ([]*models.User, error) {
 	var users []*models.User
-	err := u.DB.WithContext(c).Where("age BETWEEN ? AND ? AND id NOT IN ?", filter.Age-5, filter.Age, filter.MatchedUserIDs).Limit(20).Find(&users).Error
+	query := u.DB.WithContext(c).Where("age BETWEEN ? AND ? AND gender = ?", filter.Age-5, filter.Age, filter.Gender).Limit(20).Find(&users)
+	if len(filter.MatchedUserIDs) > 0 {
+		query = query.Where("id NOT IN ?", filter.MatchedUserIDs)
+	}
+
+	err := query.Error
 	return users, err
 }
 

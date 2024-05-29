@@ -7,6 +7,7 @@ type UserResponseDto struct {
 	Name                    string    `json:"name"`
 	Email                   string    `json:"email"`
 	Age                     int       `json:"age"`
+	Gender                  string    `json:"gender"`
 	IsExceedDailySwipeLimit bool      `json:"is_exceed_daily_swipe_limit"`
 	HasSwipeLimit           bool      `json:"has_swipe_limit"`
 	IsVerified              bool      `json:"is_verified"`
@@ -15,5 +16,6 @@ type UserResponseDto struct {
 
 type UserFilterDto struct {
 	Age            int
+	Gender         string
 	MatchedUserIDs []string
 }

@@ -8,6 +8,7 @@ type User struct {
 	Email                   string `json:"email" gorm:"unique;not null"`
 	Password                string `json:"password" gorm:"not null"`
 	Age                     int    `json:"age" gorm:"not null"`
+	Gender                  string `json:"gender" gorm:"not null"`
 	IsExceedDailySwipeLimit *bool  `json:"is_exceed_daily_swipe_limit" gorm:"default:false;not null"`
 	HasSwipeLimit           *bool  `json:"has_swipe_limit" gorm:"default:true;not null"`
 	IsVerified              *bool  `json:"is_verified" gorm:"default:false;not null"`
